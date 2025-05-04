@@ -518,6 +518,7 @@ impl StateModuleServer<IbcUnion> for Module {
                 .packet_by_packet_hash(packet_by_hash.channel_id, packet_by_hash.packet_hash)
                 .await
                 .map(into_value),
+            Query::PacketsByBatchHash(packets_by_batch_hash) => todo!(),
         }
     }
 

@@ -552,7 +552,6 @@ maybe_sol_attr! {
         }
 
         struct MsgBatchSend {
-            uint32 source_channel;
             Packet[] packets;
         }
 

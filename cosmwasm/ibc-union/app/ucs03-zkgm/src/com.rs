@@ -1,4 +1,8 @@
-use alloy::primitives::U256;
+use alloy::{
+    primitives::{bytes, U256},
+    sol_types::SolValue,
+};
+use unionlabs::primitives::Bytes;
 
 pub const INSTR_VERSION_0: u8 = 0x00;
 pub const INSTR_VERSION_1: u8 = 0x01;
@@ -83,4 +87,30 @@ alloy::sol! {
         uint256 fill_type;
         bytes market_maker;
     }
+}
+
+#[test]
+fn lksadjf() {
+    let instruction: Bytes = Instruction {
+        version: INSTR_VERSION_1,
+        opcode: OP_FUNGIBLE_ASSET_ORDER,
+        operand: FungibleAssetOrder {
+            sender: b"union19lnpcs0pvz9htcvm58jkp6ak55m49x5n8cn2cm".into(),
+            receiver: bytes!("0x2C96e52fCE14BAa13868CA8182f8A7903e4e76E0"),
+            base_token: b"muno".into(),
+            base_amount: "1".parse().unwrap(),
+            base_token_symbol: "muno".to_owned(),
+            base_token_name: "muno".to_owned(),
+            base_token_decimals: 6,
+            base_token_path: "0".parse().unwrap(),
+            quote_token: bytes!("0x05e0db400bf3f11e4107dca8ac8d61023e7d42af"),
+            quote_amount: "1".parse().unwrap(),
+        }
+        .abi_encode_params()
+        .into(),
+    }
+    .abi_encode_params()
+    .into();
+
+    println!("{instruction}, {}", u64::MAX);
 }
